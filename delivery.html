@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    start
+    <input type="text" id="start"> 
+    stop
+    <input type="text" id="stop">
+
+    <br>
+    box
+    <select id="box">
+        <option value="small">small</option>
+        <option value="mediam">mediam</option>
+        <option value="large">large</option>
+        <option value="xl">xl</option>
+        <option value="xxl">xxl</option>
+    </select><button onclick="types()">press</button>
+    send
+    <select id="send">
+        <option value="small">small</option>
+        <option value="mediam">mediam</option>
+        <option value="large">large</option>
+        <option value="protect">protect</option>
+        <option value="pastic">pastic</option>
+    </select><button onclick="types()">press</button>
+    <div style="display: flex; justify-content: space-around; font-size: 16px;">
+        <div>
+            <h1>sender</h1>
+            <h1 id="sender"></h1>
+            <h1>item</h1>
+            <h1 id="typeofitem"></h1>
+            <h1>resault</h1>
+            <h1>vat+</h1>
+            <h1>total</h1>
+        </div>
+        <div>
+            <h1>reciever</h1>
+            <h1 id="reciv"></h1>
+            <h1>price</h1>
+            <h1 id="priceofitem1">0</h1>
+            <h1 id="priceofitem2">0</h1>
+            <h1 id="vat">0</h1>
+            <h1 id="total">0</h1>
+        </div>
+    </div>
+    
+</body>
+<script>
+    let start = document.getElementById("start")
+    let stop = document.getElementById("stop")
+    let total = document.getElementById("total")
+    
+    
+
+    function types(){
+        let box = document.getElementById("box")
+        let send = document.getElementById("send")
+        let sender = document.getElementById("sender")
+        let reciv = document.getElementById("reciv")
+        let typeofitem = document.getElementById("typeofitem")
+        let priceofitem1 = document.getElementById("priceofitem1")
+        let priceofitem2 = document.getElementById("priceofitem2")
+        let vat = document.getElementById("vat")
+        var costitem = 0
+        var vat1 = 0
+        
+        var total1 = 0
+
+        
+        
+        typeofitem.innerHTML = box.value
+        typeofitem.innerHTML = send.value
+        sender.innerHTML = start.value
+        reciv.innerHTML = stop.value
+
+        if(box.value === "small"){
+            costitem += 5
+            total1 += parseFloat(total.innerHTML) + 5
+        }
+        else if (box.value === "mediam"){
+            costitem += 8
+            total1 += parseFloat(total.innerHTML) + 8
+        }
+        else if (box.value === "large"){
+            costitem += 12
+            total1 += parseFloat(total.innerHTML) + 12
+        }
+        else if (box.value === "xl"){
+            costitem += 18
+            total1 += parseFloat(total.innerHTML) + 18
+        }
+        else if (box.value === "xxl"){
+            costitem += 25
+            total1 += parseFloat(total.innerHTML) + 25
+        }
+        else if (send.value === "small") {
+            costitem += 3
+            total1 += (total.innerHTML) + 3
+        }
+        else if (send.value === "mediam") {
+            costitem += 5
+            total1 += parseFloat(total.innerHTML) + 5
+        }
+        else if (send.value === "large") {
+            costitem += 7
+            total1 += parseFloat(total.innerHTML) + 7
+        }
+        else if (send.value === "protect") {
+            costitem += 10
+            total1 += parseFloat(total.innerHTML) + 10
+        }
+        else if (send.value === "pastic") {
+            costitem += 8
+            total1 += parseFloat(total.innerHTML) + 8
+        }
+        if(box.value === "xl" || box.value === "xxl"){
+            costitem += 5
+            total1 += parseFloat(total.innerHTML) + 5
+        }
+        if (stop.value === "bankkok" || start.value === "bankkok") {
+            total1 += parseFloat(total.innerHTML) + 10
+        }
+        priceofitem1.innerHTML = costitem
+        priceofitem2.innerHTML = costitem
+        vat1 += total1 * 0.07
+        total.innerHTML = Math.round(total1 + vat1)
+        let x = vat1.toFixed(2)
+        vat.innerHTML = x
+        
+    }
+
+    
+</script>
+</html>

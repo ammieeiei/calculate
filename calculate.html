@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            background-color: black;
+            color: azure;
+        }
+        select{
+            width: 100px;
+            height: 50px;
+            font-size: large;
+            border-radius: 20px;
+        }
+        input{
+            margin-top: 20px;
+            border: 2px solid;
+            border-radius: 10px;
+            height: 20px;
+        }
+        button{
+            margin-top: 10px;
+            width: 100px;
+            height: 50px;
+            background-color: aliceblue;
+            color: black;
+            border-radius: 20px;
+        }
+        button:hover{
+            margin-top: 10px;
+            width: 100px;
+            height: 50px;
+            background-color: aliceblue;
+            color: rgb(115, 0, 0);
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <h1>calculate</h1>
+    <select name="formula" id="formula" onchange="display()">
+        <option value=""></option>
+        <option value="square">square</option>
+        <option value="Triangle">Triangle</option>
+        <option value="circle">circle</option>
+    </select>
+    <br>
+    <h1 id="x1"></h1>
+    <input type="text" style="display: none;" id="input1">
+    <h1 id="x2"></h1>
+    <input type="text" style="display: none;" id="input2">
+    <button onclick="calculate()" id="bt" style="display: none;">cal</button>
+    <h1 id="output"></h1>
+</body>
+<script>
+    let x = document.getElementById("formula")
+    let input1 = document.getElementById("input1")
+    let input2 = document.getElementById("input2")
+    let bt = document.getElementById("bt")
+    let total = document.getElementById("output")
+    let display = () =>{
+        bt.setAttribute("style", "display: block;")
+        input1.setAttribute("style","display: block;")
+        input2.setAttribute("style", "display: block;")
+
+        if(x.value === "square"){
+            let x1 = document.getElementById("x1")
+            let x2 = document.getElementById("x2")
+            x1.innerHTML = "Width"
+            x2.innerHTML = "Height"
+        }
+        else if(x.value === "Triangle"){
+            let x1 = document.getElementById("x1")
+            let x2 = document.getElementById("x2")
+            x1.innerHTML = "Base"
+            x2.innerHTML = "Height"
+        }
+        else if (x.value === "circle") {
+            let x1 = document.getElementById("x1")
+            x1.innerHTML = "Radius"
+            input2.setAttribute("style", "display: none;")
+        }
+    
+    }
+    let calculate = () => {
+        if(x.value === "square"){
+            let output = 0
+            output += input1.value * input2.value
+            total.innerHTML += parseFloat(output)
+        }
+        else if (x.value === "Triangle") {
+            let output = 0
+            output += (input1.value * input2.value) * 0.5
+            total.innerHTML += parseFloat(output)
+        }
+        else if (x.value === "circle") {
+            let output = 0
+            output += (input1.value ** 2) * 3.14
+            total.innerHTML += parseFloat(output)
+        }
+    }
+    
+</script>
+</html>
